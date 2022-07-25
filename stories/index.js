@@ -12,9 +12,12 @@ import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList"
 import Appointment from "components/Appointment/index.js";
-import Header from "components/Appointment/Header.js"
-import Empty from "components/Appointment/Empty.js"
-
+import Header from "components/Appointment/Header.js";
+import Empty from "components/Appointment/Empty.js";
+import Show from "components/Appointment/Show.js";
+import Confirm from "components/Appointment/Confirm.js";
+import Status from "components/Appointment/Status.js";
+import Error from "components/Appointment/Error.js";
 
 storiesOf("Button", module)
   .addParameters({
@@ -147,3 +150,34 @@ storiesOf("Button", module)
           .add("Appointment with Time", () => <Appointment time="12pm" />)
           .add("Header", () => <Header time="12pm" />)
           .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+          .add('Show', () => <Show {...{
+            id: 3,
+            time: "12pm",
+            interview: {
+              student: "Cristian Sanchez",
+              interviewer:{
+                id: 3,
+                name: "Mildred Nazir",
+                avatar: "https://i.imgur.com/T2WwVfS.png",
+              }
+            }
+          }} onEdit={action('onEdit')} onDelete={action('onDelete')} />);
+          
+        storiesOf("Confirm", module)
+          .addParameters({
+          backgrounds: [{ name: "white", value: "#fff", default: true }]
+          })
+          .add("Confirm", () => <Confirm onCancel={action('onCancel')} onConfirm={action('onConfirm')} />)
+
+          storiesOf("Status", module)
+            .addParameters({
+            backgrounds: [{ name: "white", value: "#fff", default: true }]
+            })
+            .add("Status", () => <Status message='Deleting'/>)
+
+          storiesOf("Error", module)
+            .addParameters({
+            backgrounds: [{ name: "white", value: "#fff", default: true }]
+            })
+            .add("Error", () => <Error message='Could not delete appointment' onClose={action('onClose')} />)
+
