@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
-import React from "react";
+import React, {Fragment} from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -18,6 +18,9 @@ import Show from "components/Appointment/Show.js";
 import Confirm from "components/Appointment/Confirm.js";
 import Status from "components/Appointment/Status.js";
 import Error from "components/Appointment/Error.js";
+import Form from "components/Appointment/Form.js"
+
+
 
 storiesOf("Button", module)
   .addParameters({
@@ -150,6 +153,12 @@ storiesOf("Button", module)
           .add("Appointment with Time", () => <Appointment time="12pm" />)
           .add("Header", () => <Header time="12pm" />)
           .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+          .add("Appointment Empty", () => (
+            <Fragment>
+              <Appointment id={1} time="4pm" />
+              <Appointment time="5pm" />
+            </Fragment>
+          ))
           .add('Show', () => <Show {...{
             id: 3,
             time: "12pm",
@@ -161,6 +170,8 @@ storiesOf("Button", module)
                 avatar: "https://i.imgur.com/T2WwVfS.png",
               }
             }
+
+            
           }} onEdit={action('onEdit')} onDelete={action('onDelete')} />);
           
         storiesOf("Confirm", module)
@@ -181,3 +192,9 @@ storiesOf("Button", module)
             })
             .add("Error", () => <Error message='Could not delete appointment' onClose={action('onClose')} />)
 
+            storiesOf('Form', module)
+            .addParameters({
+              backgrounds: [{ name: "white", value: "#fff", default: true }]
+            })
+            .add('Create', () => <Form interviewers={interviewers} onCancel={action('onCancel')} onSave={action('onSave')}/>)
+            .add('Edit', () => <Form interviewers={interviewers} value='Cristian' onCancel={action('onCancel')} onSave={action('onSave')}/>)
