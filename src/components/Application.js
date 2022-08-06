@@ -6,6 +6,7 @@ import DayList from "./DayList";
 import Appointment from "components/Appointment";
 import {getAppointmentsForDay} from "helpers/selectors";
 import {getInterview} from "helpers/selectors";
+import { getInterviewersForDay } from "helpers/selectors";
 
 
 
@@ -19,6 +20,7 @@ export default function Application(props) {
     interviewers: {}
   });
 
+  const InterviewersArr = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   useEffect(() => {
@@ -62,6 +64,7 @@ export default function Application(props) {
             id={appointment.id}
             time={appointment.time}
             interview={interview} 
+            interviewers={InterviewersArr}
 />
         })}
         <Appointment key="last" time="5pm" />
