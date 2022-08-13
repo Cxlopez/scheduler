@@ -10,14 +10,15 @@ export default function Form(props) {
 
 
   const reset = () => {
-    if (student) {
       setStudent('');
       setInterviewer(null)
-    } else {
-      props.onCancel();
-    }
-
+      setError('');
   };
+
+  const cancel = () => {
+    reset();
+    props.onCancel();
+  }
 
   const validate = () => {
     const spacesEntered = student.trim();
@@ -32,8 +33,8 @@ export default function Form(props) {
       return;
     }
 
+    setError("");
     props.onSave(student, interviewer);
-    return true;
   };
 
   return (
@@ -59,7 +60,7 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={reset}>Cancel</Button>
+          <Button danger onClick={cancel}>Cancel</Button>
           <Button confirm onClick={validate}>Save</Button>
         </section>
       </section>
