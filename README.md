@@ -1,5 +1,5 @@
 # Interview Scheduler
-The Interview Scheduler is an application where users can `Create`, `Edit` and `Delete` appointments between students and mentors
+The Interview Scheduler is an application where users can `Create`, `Edit` and `Delete` appointments between students and mentors.
 ## Setup
 - Fork & Clone the Repo
 - Use `npm install` to install dependencies 
