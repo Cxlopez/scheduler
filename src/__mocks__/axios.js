@@ -1,5 +1,5 @@
 
-
+//Fixtures
 const fixtures = {
   days: [
     {
@@ -55,6 +55,7 @@ const fixtures = {
   }
 };
 
+//Mock request
 export default {
   defaults: { baseURL: "" },
   get: jest.fn(url => {
@@ -85,6 +86,7 @@ export default {
     }
   }),
 
+  //Put request for adding or editing appointment
   put: jest.fn((url) => {
     return Promise.resolve({
       status: 204,
@@ -92,6 +94,7 @@ export default {
     });
   }),
 
+  //Delete request for deleting appointment
   delete: jest.fn((url) => {
     return Promise.resolve({
       status: 204,

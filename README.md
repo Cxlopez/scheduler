@@ -35,4 +35,3 @@ npm run storybook
 - react-scripts
 - axios
 - classnames
-- testing-library/react-hooks

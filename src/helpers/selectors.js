@@ -1,4 +1,5 @@
 /* eslint-disable array-callback-return */
+//Returns an array of appointments for the day
 export function getAppointmentsForDay(state, day) {
   const { days, appointments } = state;
   const apptArr = [];
@@ -11,6 +12,7 @@ export function getAppointmentsForDay(state, day) {
   return apptArr;
 }
 
+// Returns the interviewer from the interview object
 export function getInterview(state, interview) {
   if (!interview) {
     return null;
@@ -22,6 +24,7 @@ export function getInterview(state, interview) {
   }
 }
 
+//Returns an array of interviewers for the day
 export function getInterviewersForDay(state, day) {
   const { days, interviewers } = state;
   const interArr = [];

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+
+//Hook for managin state of application
 export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
@@ -13,7 +15,7 @@ export default function useApplicationData() {
   });
 
 
-
+  //Book & edit an interview
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -27,7 +29,6 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then((res) => {
-        console.log(res)
         setState({
           ...state,
           appointments,
@@ -37,6 +38,7 @@ export default function useApplicationData() {
 
   }
 
+  //Find days
   function findDay(day) {
     const days = {
       Monday: 0,
@@ -48,6 +50,8 @@ export default function useApplicationData() {
     return days[day]
   }
 
+
+  //Cancel an interview
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -74,6 +78,8 @@ export default function useApplicationData() {
       })
   }
 
+
+  //Retrieving API data
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -84,6 +90,7 @@ export default function useApplicationData() {
     })
   }, []);
 
+  //For updating available spots when interview is book or canceled
   function updateSpots(state, appointments) {
     return state.days.map((elem) => {
       if (elem.name === state.day) {
